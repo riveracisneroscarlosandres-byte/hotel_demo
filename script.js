@@ -3,6 +3,19 @@
 ========================= */
 
 const navbar = document.querySelector(".navbar");
+const navLinks = document.querySelector(".nav-links");
+const navToggle = document.querySelector(".nav-toggle");
+
+if (navToggle && navLinks) {
+  navToggle.addEventListener("click", () => {
+    navLinks.classList.toggle("open");
+  });
+
+  // close menu when a link is clicked
+  navLinks.querySelectorAll("a").forEach((a) =>
+    a.addEventListener("click", () => navLinks.classList.remove("open"))
+  );
+}
 
 window.addEventListener("scroll", () => {
   if (!navbar) return;
@@ -11,6 +24,7 @@ window.addEventListener("scroll", () => {
     navbar.style.background = "white";
     navbar.style.boxShadow = "0 10px 30px rgba(0,0,0,.08)";
 
+    if (navLinks) navLinks.style.background = "white";
     document.querySelectorAll(".nav-links a").forEach((link) => {
       link.style.color = "#263238";
     });
@@ -22,6 +36,7 @@ window.addEventListener("scroll", () => {
     navbar.style.background = "transparent";
     navbar.style.boxShadow = "none";
 
+    if (navLinks) navLinks.style.background = "transparent";
     document.querySelectorAll(".nav-links a").forEach((link) => {
       link.style.color = "white";
     });
